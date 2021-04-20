@@ -13,28 +13,12 @@ public class ControlPerson implements ActionListener {
     private ActionsPerson view;
     private ManagementPerson mng;
 
-    public ControlPerson (ActionsPerson view) throws IOException {
-        this.view=view;
+    public ControlPerson(ActionsPerson view) throws IOException {
+        this.view = view;
         mng = new ManagementPerson(People.sortId);
         mng.pullJson();
-        persistence();
-    }
+        mng.PushJson();
 
-    private void persistence() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    try {
-                        mng.PushJson();
-                        System.out.println("Guardado en JS");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
     }
 
     @Override

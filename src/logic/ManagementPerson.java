@@ -14,12 +14,29 @@ public class ManagementPerson {
     private FilePerson file;
 
     public ManagementPerson(Comparator<People> comp) {
-        comparator=comp;
+        comparator = comp;
         persons = new ArrayList<>();
         file = new FilePerson();
         file.setPathName("resources/files/");
         file.setNameFile("people.json");
         file.openFile();
+    }
+
+    public People findPerson(String id) {
+        for (People people : persons) {
+            if (people.getId().equals(people)) {
+                return people;
+            }
+        }
+        return null;
+    }
+
+    public boolean addPerson(String id, String name, String lastName, int age) {
+        if (findPerson(id) == null) {
+            persons.add(new People(id, name, lastName, age));
+            return true;
+        }
+        return false;
     }
 
     public void PushJson() throws IOException {
@@ -35,12 +52,12 @@ public class ManagementPerson {
         file.setPathName("resources/files/");
         file.setNameFile("people.json");
         file.openFile();
-        persons=file.pullJson();
+        persons = file.pullJson();
     }
 
-    public ArrayList<People> sortPeople(Comparator<People> comparator){
-        ArrayList<People> clonPeoples= (ArrayList<People>) persons.clone();
-        Collections.sort(clonPeoples,comparator);
+    public ArrayList<People> sortPeople(Comparator<People> comparator) {
+        ArrayList<People> clonPeoples = (ArrayList<People>) persons.clone();
+        Collections.sort(clonPeoples, comparator);
         return clonPeoples;
     }
 

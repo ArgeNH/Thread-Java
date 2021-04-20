@@ -9,7 +9,7 @@ public class People {
     private String lastName;
     private int age;
 
-   public static Comparator<People> sortId = new Comparator<People>() {
+    public static Comparator<People> sortId = new Comparator<People>() {
         @Override
         public int compare(People o1, People o2) {
             return o1.getId().compareTo(o2.getId());
@@ -37,7 +37,7 @@ public class People {
         }
     };
 
-    public People(){
+    public People() {
 
     }
 
