@@ -1,6 +1,6 @@
 package logic;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 
 public class People {
 
@@ -8,6 +8,39 @@ public class People {
     private String name;
     private String lastName;
     private int age;
+
+   public static Comparator<People> sortId = new Comparator<People>() {
+        @Override
+        public int compare(People o1, People o2) {
+            return o1.getId().compareTo(o2.getId());
+        }
+    };
+
+    public static Comparator<People> sortName = new Comparator<People>() {
+        @Override
+        public int compare(People o1, People o2) {
+            return o1.getName().compareTo(o2.getName());
+        }
+    };
+
+    public static Comparator<People> sortLastName = new Comparator<People>() {
+        @Override
+        public int compare(People o1, People o2) {
+            return o1.getLastName().compareTo(o2.getLastName());
+        }
+    };
+
+    public static Comparator<People> sortAge = new Comparator<People>() {
+        @Override
+        public int compare(People o1, People o2) {
+            return o1.getAge() - o2.getAge();
+        }
+    };
+
+    public People(){
+
+    }
+
 
     public People(String id, String name, String lastName, int age) {
         this.id = id;
@@ -48,4 +81,13 @@ public class People {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "People{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
