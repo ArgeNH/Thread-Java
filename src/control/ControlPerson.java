@@ -15,7 +15,7 @@ public class ControlPerson implements ActionListener {
 
     public ControlPerson(ActionsPerson view) throws IOException {
         this.view = view;
-        mng = new ManagementPerson(People.sortId);
+
         mng.pullJson();
         mng.PushJson();
 
