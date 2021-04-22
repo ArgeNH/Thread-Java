@@ -1,29 +1,30 @@
 package logic;
 
+import org.w3c.dom.ls.LSInput;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 public class ManagementPerson implements Runnable {
 
     private ArrayList<People> persons;
+    private Comparator<People> comparator;
     private String name;
     private FilePerson file;
-    private int opt = 0;
+    private int pos = 0;
+    private int end = 0;
 
-    public ManagementPerson (){
-
+    public ManagementPerson() {
     }
 
-    public ManagementPerson(String name, int opt) {
-        this.name=name;
+    public ManagementPerson(String name, Comparator<People> comparator, int pos, int end) {
+        this.comparator = comparator;
+        this.name = name;
         persons = new ArrayList<>();
         file = new FilePerson();
-        this.opt = opt;
+        this.pos = pos;
+        this.end = end;
         file.setPathName("resources/files/");
         file.setNameFile("people.json");
         file.openFile();
@@ -62,40 +63,19 @@ public class ManagementPerson implements Runnable {
         persons = file.pullJson();
     }
 
-    public ArrayList<People> options(int opt) throws InterruptedException {
-        ArrayList<People> clonPeoples = (ArrayList<People>) persons.clone();
-        switch (opt) {
-            case 1:
-                for (int i = 0; i < clonPeoples.size(); i++) {
-                    Thread.sleep(new Random().nextInt(501) + 500);
-                    System.out.println(this.name+" "+sortPeople(People.sortName).get(i).getName());
-                    System.out.println(this.name+" Terminó");
-                }
-                break;
-            case 2:
-                for (int i = 0; i < clonPeoples.size(); i++) {
-                    Thread.sleep(new Random().nextInt(501) + 500);
-                    System.out.println(this.name+" "+sortPeople(People.sortLastName).get(i).getLastName());
-                    System.out.println(this.name+" Terminó");
-                }
-                break;
-            case 3:
-                for (int i = 0; i < clonPeoples.size(); i++) {
-                    Thread.sleep(new Random().nextInt(501) + 500);
-                    System.out.println(this.name+" "+sortPeople(People.sortId).get(i).getId());
-                    System.out.println(this.name+" Terminó");
-                }
-                break;
-            case 4:
-                for (int i = 0; i < clonPeoples.size(); i++) {
-                    Thread.sleep(new Random().nextInt(501) + 500);
-                    System.out.println(this.name+" "+sortPeople(People.sortAge).get(i).getAge());
-                }
-                System.out.println(this.name+" Terminó");
-                break;
-            default:
+    public void options(Comparator<People> comparator, int pos, int end) throws InterruptedException {
+        ArrayList<People> clonPeoples = sortPeople(comparator);
+        //.out.println("posición " + pos);
+        //System.out.println("final " + end);
+        int cont=0;
+        System.out.println("Ordenando hilo "+this.name);
+        for (int i = pos; i < end; i++) {
+            Thread.sleep(new Random().nextInt(501) + 500);
+            System.out.println("Ejecución del hilo " + this.name + " --> " + sortPeople(comparator).get(i).toString());
+            cont++;
         }
-        return clonPeoples;
+        System.out.println("Fin de ejecucion del hilo " + this.name);
+        System.out.println("iteraciones "+cont);
     }
 
     public ArrayList<People> sortPeople(Comparator<People> comparator) {
@@ -119,7 +99,7 @@ public class ManagementPerson implements Runnable {
     @Override
     public void run() {
         try {
-            options(opt);
+            options(comparator, pos, end);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
