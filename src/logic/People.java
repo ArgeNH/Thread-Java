@@ -83,11 +83,11 @@ public class People {
 
     @Override
     public String toString() {
-        return "People{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+        String msg = null;
+
+        msg ="Id= "+id+", Nombre= "+name+", Apellido= "+lastName+", Edad= "+age;
+
+
+        return msg;
     }
 }

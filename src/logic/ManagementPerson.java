@@ -64,18 +64,15 @@ public class ManagementPerson implements Runnable {
     }
 
     public void options(Comparator<People> comparator, int pos, int end) throws InterruptedException {
-        ArrayList<People> clonPeoples = sortPeople(comparator);
         //.out.println("posición " + pos);
         //System.out.println("final " + end);
-        int cont=0;
         System.out.println("Ordenando hilo "+this.name);
         for (int i = pos; i < end; i++) {
             Thread.sleep(new Random().nextInt(501) + 500);
             System.out.println("Ejecución del hilo " + this.name + " --> " + sortPeople(comparator).get(i).toString());
-            cont++;
+
         }
         System.out.println("Fin de ejecucion del hilo " + this.name);
-        System.out.println("iteraciones "+cont);
     }
 
     public ArrayList<People> sortPeople(Comparator<People> comparator) {

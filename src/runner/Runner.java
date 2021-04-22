@@ -48,31 +48,10 @@ public class Runner {
             e.printStackTrace();
         }
 
-       /* ManagementPerson mng = new ManagementPerson("Hilo uno",1);
-        ManagementPerson mngTwo = new ManagementPerson("Hilo dos",4);
-        Thread thOne = new Thread(mng);
-        Thread thTwo = new Thread(mngTwo);
-
-        mng.pullJson();
-        mngTwo.pullJson();
-
-       thOne.start();
-       thTwo.start();
-
-        try {
-            thOne.join();
-            thTwo.join();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
         Instant end = Instant.now();
 
         Duration duration = Duration.between(begin, end);
         System.out.println("Tiempo -->" + duration.getSeconds());
-
-
 
       /*
         Opción para dividir con un list
@@ -88,6 +67,5 @@ public class Runner {
 
         pos =primer.size();
         end1 = segundo.size();*/
-
     }
 }
