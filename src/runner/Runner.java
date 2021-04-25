@@ -1,13 +1,11 @@
 package runner;
 
-import logic.ManagementPerson;
+import logic.Person;
 import logic.People;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Runner {
 
@@ -15,11 +13,11 @@ public class Runner {
 
         Instant begin = Instant.now();
 
-        ManagementPerson mng = new ManagementPerson("Uno",People.sortName,0,11);
-        ManagementPerson mngTwo = new ManagementPerson("Dos",People.sortName,12,22);
-        ManagementPerson mngThree = new ManagementPerson("Tres",People.sortName,23,33);
-        ManagementPerson mngFour = new ManagementPerson("Cuatro",People.sortName,34,44);
-        ManagementPerson mngFive = new ManagementPerson("Cinco",People.sortName,45,55);
+        Person mng = new Person("Uno",People.sortName,0,11);
+        Person mngTwo = new Person("Dos",People.sortName,12,22);
+        Person mngThree = new Person("Tres",People.sortName,23,33);
+        Person mngFour = new Person("Cuatro",People.sortName,34,44);
+        Person mngFive = new Person("Cinco",People.sortName,45,55);
         mng.pullJson();
         mngTwo.pullJson();
         mngThree.pullJson();

@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class ManagementPerson implements Runnable {
+public class Person implements Runnable {
 
     private ArrayList<People> persons;
     private Comparator<People> comparator;
@@ -15,10 +15,10 @@ public class ManagementPerson implements Runnable {
     private int pos = 0;
     private int end = 0;
 
-    public ManagementPerson() {
+    public Person() {
     }
 
-    public ManagementPerson(String name, Comparator<People> comparator, int pos, int end) {
+    public Person(String name, Comparator<People> comparator, int pos, int end) {
         this.comparator = comparator;
         this.name = name;
         persons = new ArrayList<>();
