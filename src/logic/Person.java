@@ -1,9 +1,8 @@
 package logic;
 
-import org.w3c.dom.ls.LSInput;
-
-import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
 public class Person implements Runnable {
@@ -64,15 +63,20 @@ public class Person implements Runnable {
     }
 
     public void options(Comparator<People> comparator, int pos, int end) throws InterruptedException {
-        //.out.println("posición " + pos);
-        //System.out.println("final " + end);
+
+        Instant begin = Instant.now();
+
         System.out.println("Ordenando hilo "+this.name);
         for (int i = pos; i < end; i++) {
             Thread.sleep(new Random().nextInt(501) + 500);
             System.out.println("Ejecución del hilo " + this.name + " --> " + sortPeople(comparator).get(i).toString());
-
         }
         System.out.println("Fin de ejecucion del hilo " + this.name);
+
+        Instant ended = Instant.now();
+
+        Duration duration = Duration.between(begin, ended);
+        System.out.println("Tiempo hilo "+this.name+" --> " + duration.getSeconds());
     }
 
     public ArrayList<People> sortPeople(Comparator<People> comparator) {
