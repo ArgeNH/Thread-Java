@@ -144,7 +144,9 @@ public class Runner {
 
         psOne.pullJson();
 
-        Thread thOne = new Thread(psOne);
+        psOne.run();
+
+       /* Thread thOne = new Thread(psOne);
 
         thOne.start();
 
@@ -152,7 +154,7 @@ public class Runner {
             thOne.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
         //Paralelismo de tareas
        /* Person psOne = new Person("Ordenamiendo por Id", People.sortId,0,55);
